@@ -38,3 +38,5 @@ Dataverse is a trademark of President and Fellows of Harvard College and is regi
 [chat.dataverse.org]: http://chat.dataverse.org
 [Dataverse Community Meeting]: https://dataverse.org/events
 [open source]: LICENSE.md
+
+S3 tests are coming
