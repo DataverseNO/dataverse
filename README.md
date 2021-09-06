@@ -40,3 +40,4 @@ Dataverse is a trademark of President and Fellows of Harvard College and is regi
 [open source]: LICENSE.md
 
 S3 tests are coming
+DOI support is coming
