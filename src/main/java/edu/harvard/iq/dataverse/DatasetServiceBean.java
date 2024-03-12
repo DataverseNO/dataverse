@@ -714,7 +714,11 @@ public class DatasetServiceBean implements java.io.Serializable {
         }
 
         if (fileHandlerSuceeded) {
-            exportLogger.addHandler(fileHandler);
+            try {
+                exportLogger.addHandler(fileHandler);
+            } catch (Exception) {
+                Logger.getLogger(DatasetServiceBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             exportLogger = logger;
         }
@@ -759,7 +763,11 @@ public class DatasetServiceBean implements java.io.Serializable {
         exportLogger.info("Finished export-all job.");
 
         if (fileHandlerSuceeded) {
-            fileHandler.close();
+            try {
+                fileHandler.close();
+            } catch (Exception) {
+                Logger.getLogger(DatasetServiceBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }
