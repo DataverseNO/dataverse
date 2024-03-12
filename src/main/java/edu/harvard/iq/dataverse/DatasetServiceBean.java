@@ -701,7 +701,7 @@ public class DatasetServiceBean implements java.io.Serializable {
         Integer countError = 0;
         String logTimestamp = logFormatter.format(new Date());
         Logger exportLogger = Logger.getLogger("edu.harvard.iq.dataverse.harvest.client.DatasetServiceBean." + "ExportAll" + logTimestamp);
-        String logFileName = System.getProperty("com.sun.aas.instanceRoot") + File.separator + "logs" + File.separator + "export_" + logTimestamp + ".log";
+        String logFileName = "../logs" + File.separator + "export_" + logTimestamp + ".log";
         FileHandler fileHandler;
         boolean fileHandlerSuceeded;
         try {
@@ -710,7 +710,6 @@ public class DatasetServiceBean implements java.io.Serializable {
             fileHandlerSuceeded = true;
         } catch (IOException | SecurityException ex) {
             Logger.getLogger(DatasetServiceBean.class.getName()).log(Level.SEVERE, null, ex);
-            return;
         }
 
         if (fileHandlerSuceeded) {
