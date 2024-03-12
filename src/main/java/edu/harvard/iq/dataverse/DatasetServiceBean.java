@@ -703,7 +703,7 @@ public class DatasetServiceBean implements java.io.Serializable {
         Logger exportLogger = Logger.getLogger("edu.harvard.iq.dataverse.harvest.client.DatasetServiceBean." + "ExportAll" + logTimestamp);
         String logFileName = "../logs" + File.separator + "export_" + logTimestamp + ".log";
         FileHandler fileHandler;
-        boolean fileHandlerSuceeded;
+        boolean fileHandlerSuceeded = false;
         try {
             fileHandler = new FileHandler(logFileName);
             exportLogger.setUseParentHandlers(false);
