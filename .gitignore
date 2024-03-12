@@ -76,3 +76,4 @@ apache-maven*
 
 # Docker development volumes
 /docker-dev-volumes
+/.vs
