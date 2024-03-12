@@ -710,6 +710,7 @@ public class DatasetServiceBean implements java.io.Serializable {
             fileHandlerSuceeded = true;
         } catch (IOException | SecurityException ex) {
             Logger.getLogger(DatasetServiceBean.class.getName()).log(Level.SEVERE, null, ex);
+            fileHandlerSuceeded = false;
         }
 
         if (fileHandlerSuceeded) {
