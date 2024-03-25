@@ -48,6 +48,7 @@ scripts/installer/default.config
 
 # do not track Visual Studio Code files
 .vscode
+.vs
 
 # ignore UI testing related files
 tests/node_modules
@@ -61,5 +62,3 @@ src/main/webapp/resources/images/dataverseproject.png.thumb140
 
 # Docker development volumes
 /docker-dev-volumes
-
-.vs
