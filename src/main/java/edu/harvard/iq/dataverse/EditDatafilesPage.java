@@ -2501,9 +2501,7 @@ public class EditDatafilesPage implements java.io.Serializable {
         }
 
         // Retrieve via MPCONFIG. Has sane default /tmp/dataverse from META-INF/microprofile-config.properties
-        String filesRootDirectory = JvmSettings.FILES_DIRECTORY.lookup();
-
-        String fileSystemName = filesRootDirectory + "/temp/" + fileSystemId;
+        String fileSystemName = FileUtil.getFilesTempDirectory() + fileSystemId;
 
         String imageThumbFileName = null;
 
