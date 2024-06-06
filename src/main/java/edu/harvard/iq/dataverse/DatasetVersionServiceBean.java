@@ -6,7 +6,6 @@ import edu.harvard.iq.dataverse.pidproviders.PidUtil;
 import edu.harvard.iq.dataverse.search.IndexServiceBean;
 import edu.harvard.iq.dataverse.authorization.AuthenticationServiceBean;
 import edu.harvard.iq.dataverse.authorization.users.AuthenticatedUser;
-import static edu.harvard.iq.dataverse.batch.jobs.importer.filesystem.FileRecordJobListener.SEP;
 import edu.harvard.iq.dataverse.batch.util.LoggingUtil;
 import edu.harvard.iq.dataverse.search.SolrSearchResult;
 import edu.harvard.iq.dataverse.settings.SettingsServiceBean;
@@ -36,6 +35,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import org.apache.commons.lang3.StringUtils;
+import java.io.File;
 
 /**
  *
@@ -893,7 +893,7 @@ public class DatasetVersionServiceBean implements java.io.Serializable {
     
     public void writeEditVersionLog(DatasetVersionDifference dvd, AuthenticatedUser au) {
 
-        String logDir = System.getProperty("com.sun.aas.instanceRoot") + SEP + "logs" + SEP + "edit-drafts" + SEP;
+        String logDir = System.getProperty("com.sun.aas.instanceRoot") + File.separator + "logs" + File.separator + "edit-drafts" + File.separator;
         String identifier = dvd.getOriginalVersion().getDataset().getIdentifier();
         identifier = identifier.substring(identifier.indexOf("/") + 1);
         String datasetId = dvd.getOriginalVersion().getDataset().getId().toString();

@@ -54,8 +54,6 @@ import java.util.logging.Logger;
 @Named
 @Dependent
 public class FileRecordReader extends AbstractItemReader {
-    
-    public static final String SEP = File.separator;
 
     @Inject
     JobContext jobContext;
@@ -101,7 +99,7 @@ public class FileRecordReader extends AbstractItemReader {
         // Retrieve via MPCONFIG. Has sane default /tmp/dataverse from META-INF/microprofile-config.properties
         String baseDir = JvmSettings.FILES_DIRECTORY.lookup();
         
-        directory = new File(baseDir + SEP + dataset.getAuthority() + SEP + dataset.getIdentifier() + SEP + uploadFolder);
+        directory = new File(baseDir + File.separator + dataset.getAuthority() + File.separator + dataset.getIdentifier() + File.separator + uploadFolder);
         // TODO: 
         // The above goes directly to the filesystem directory configured by the 
         // old "dataverse.files.directory" JVM option (otherwise used for temp

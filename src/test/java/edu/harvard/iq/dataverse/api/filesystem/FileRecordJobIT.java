@@ -75,7 +75,6 @@ public class FileRecordJobIT {
 
     private static final ObjectMapper mapper = new ObjectMapper();
     private static ClassLoader classLoader = FileRecordJobIT.class.getClassLoader();
-    private static final String SEP = File.separator;
 
     // test properties
     private static String testName;
@@ -179,10 +178,10 @@ public class FileRecordJobIT {
                     .get("/api/datasets/" + dsId)
                     .then().assertThat().statusCode(200)
                     .extract().jsonPath().getString("data.identifier");
-            dsGlobalId = "doi:" + props.getProperty("authority") + SEP + dsIdentifier;
+            dsGlobalId = "doi:" + props.getProperty("authority") + File.separator + dsIdentifier;
             System.out.println("IDENTIFIER: " + dsIdentifier);
-            dsDoi = props.getProperty("authority") + SEP + dsIdentifier;
-            dsDir = props.getProperty("data.dir") + dsIdentifier + SEP;
+            dsDoi = props.getProperty("authority") + File.separator + dsIdentifier;
+            dsDir = props.getProperty("data.dir") + dsIdentifier + File.separator;
             System.out.println("DATA DIR: " + dsDir);
         } catch (IOException ioe) {
             System.out.println("Error creating test dataset: " + ioe.getMessage());
@@ -1145,7 +1144,7 @@ public class FileRecordJobIT {
                 isDirCreated = myDir.mkdirs();
             }
             if (isDirCreated) {
-                File file = new File(dir + SEP + name);
+                File file = new File(dir + File.separator + name);
                 long start = System.currentTimeMillis();
                 PrintWriter writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(
                         new FileOutputStream(file), "UTF-8")), false);

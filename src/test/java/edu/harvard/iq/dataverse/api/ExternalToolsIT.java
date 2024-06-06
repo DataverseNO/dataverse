@@ -540,9 +540,9 @@ public class ExternalToolsIT {
         Integer datasetId = UtilIT.getDatasetIdFromResponse(createDataset);
 
         // Not really an HDF5 file. Just random bytes. But the file extension makes it detected as HDF5.
-        Path pathToFalseHdf5 = Paths.get(java.nio.file.Files.createTempDirectory(null) + File.separator + "false.hdf5");
+        Path pathToFalseHdf5 = Paths.get(Files.createTempDirectory(null) + File.separator + "false.hdf5");
         byte[] bytes = {1, 2, 3, 4, 5};
-        java.nio.file.Files.write(pathToFalseHdf5, bytes);
+        Files.write(pathToFalseHdf5, bytes);
 
         Response uploadFalseHdf5 = UtilIT.uploadFileViaNative(datasetId.toString(), pathToFalseHdf5.toString(), apiToken);
         uploadFalseHdf5.prettyPrint();

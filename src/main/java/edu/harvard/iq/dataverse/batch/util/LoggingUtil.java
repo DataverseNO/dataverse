@@ -21,7 +21,6 @@ package edu.harvard.iq.dataverse.batch.util;
 
 import edu.harvard.iq.dataverse.DvObject;
 import edu.harvard.iq.dataverse.actionlogging.ActionLogRecord;
-import static edu.harvard.iq.dataverse.batch.jobs.importer.filesystem.FileRecordJobListener.SEP;
 import edu.harvard.iq.dataverse.engine.command.Command;
 import org.apache.commons.io.FileUtils;
 
@@ -58,8 +57,17 @@ public class LoggingUtil {
             File dir = new File(logDir);
             if (!dir.exists() && !dir.mkdirs()) {
                 logger.log(Level.SEVERE, "Couldn't create directory: " + dir.getAbsolutePath());
+                return;
             }
-            File logFile = new File(dir.getAbsolutePath() + fileName);
+            if (fileName == null || fileName.length() == 0) {
+                logger.log(Level.SEVERE, "File name not set!");
+                return;
+            }
+            if (fileName.charAt(0) == "/") {
+                fileName = fileName.substring(1, fileName.length());
+            }
+
+            File logFile = new File(dir.getAbsolutePath() + File.separator + fileName);
             FileUtils.writeStringToFile(logFile, fileContent);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error saving log report: " + fileName + " " + e.getMessage());
@@ -67,7 +75,7 @@ public class LoggingUtil {
     }
     
     public static void writeOnSuccessFailureLog(Command command, String failureNotes, DvObject dvo){
-        String logDir = System.getProperty("com.sun.aas.instanceRoot") + SEP + "logs" + SEP + "process-failures" + SEP;
+        String logDir = System.getProperty("com.sun.aas.instanceRoot") + File.separator + "logs" + File.separator + "process-failures" + File.separator;
         String identifier = dvo.getIdentifier();
         
         if (identifier != null) {

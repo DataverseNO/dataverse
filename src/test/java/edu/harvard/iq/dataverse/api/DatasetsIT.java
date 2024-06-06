@@ -2318,24 +2318,23 @@ public class DatasetsIT {
 
         if (doExtraTesting) {
 
-            String SEP = java.io.File.separator;
             // Set this to where you keep your files in dev. It might be nice to have an API to query to get this location from Dataverse.
             // TODO: Think more about if dsDir should end with "/FK2" or not.
             String dsDir = "/usr/local/glassfish4/glassfish/domains/domain1/files/10.5072";
-            String dsDirPlusIdentifier = dsDir + SEP + identifier;
+            String dsDirPlusIdentifier = dsDir + File.separator + identifier;
             logger.info("dsDirPlusIdentifier: " + dsDirPlusIdentifier);
-            java.nio.file.Files.createDirectories(java.nio.file.Paths.get(dsDirPlusIdentifier));
-            String dsDirPlusIdentifierPlusUploadFolder = dsDir + SEP + identifier + SEP + uploadFolder;
+            Files.createDirectories(Paths.get(dsDirPlusIdentifier));
+            String dsDirPlusIdentifierPlusUploadFolder = dsDir + File.separator + identifier + File.separator + uploadFolder;
             logger.info("dsDirPlusIdentifierPlusUploadFolder: " + dsDirPlusIdentifierPlusUploadFolder);
-            java.nio.file.Files.createDirectories(java.nio.file.Paths.get(dsDirPlusIdentifierPlusUploadFolder));
+            Files.createDirectories(Paths.get(dsDirPlusIdentifierPlusUploadFolder));
             String checksumFilename = "files.sha";
             String filename1 = "file1.txt";
             String fileContent1 = "big data!";
-            java.nio.file.Files.write(java.nio.file.Paths.get(dsDir + SEP + identifier + SEP + uploadFolder + SEP + checksumFilename), fileContent1.getBytes());
+            Files.write(Paths.get(dsDir + File.separator + identifier + File.separator + uploadFolder + File.separator + checksumFilename), fileContent1.getBytes());
 //            // This is actually the SHA-1 of a zero byte file. It doesn't seem to matter what you send to the DCM?
             String checksumFileContent = "da39a3ee5e6b4b0d3255bfef95601890afd80709 " + filename1;
-            java.nio.file.Files.createFile(java.nio.file.Paths.get(dsDir + SEP + identifier + SEP + uploadFolder + SEP + filename1));
-            java.nio.file.Files.write(java.nio.file.Paths.get(dsDir + SEP + identifier + SEP + uploadFolder + SEP + checksumFilename), checksumFileContent.getBytes());
+            Files.createFile(Paths.get(dsDir + File.separator + identifier + File.separator + uploadFolder + File.separator + filename1));
+            Files.write(Paths.get(dsDir + File.separator + identifier + File.separator + uploadFolder + File.separator + checksumFilename), checksumFileContent.getBytes());
 
         }
         int totalSize = 1234567890;
@@ -2891,13 +2890,13 @@ createDataset = UtilIT.createRandomDatasetViaNativeApi(dataverse1Alias, apiToken
         Integer datasetId = UtilIT.getDatasetIdFromResponse(createDataset);
         String datasetPid = JsonPath.from(createDataset.asString()).getString("data.persistentId");
 
-        Path pathToFile = Paths.get(java.nio.file.Files.createTempDirectory(null) + File.separator + "data.csv");
+        Path pathToFile = Paths.get(Files.createTempDirectory(null) + File.separator + "data.csv");
         String contentOfCsv = ""
                 + "name,pounds,species\n"
                 + "Marshall,40,dog\n"
                 + "Tiger,17,cat\n"
                 + "Panther,21,cat\n";
-        java.nio.file.Files.write(pathToFile, contentOfCsv.getBytes());
+        Files.write(pathToFile, contentOfCsv.getBytes());
 
         Response uploadFile = UtilIT.uploadFileViaNative(datasetId.toString(), pathToFile.toString(), authorApiToken);
         uploadFile.prettyPrint();
@@ -2963,13 +2962,13 @@ createDataset = UtilIT.createRandomDatasetViaNativeApi(dataverse1Alias, apiToken
         Integer datasetId = UtilIT.getDatasetIdFromResponse(createDataset);
         String datasetPid = JsonPath.from(createDataset.asString()).getString("data.persistentId");
 
-        Path pathToFile = Paths.get(java.nio.file.Files.createTempDirectory(null) + File.separator + "data.csv");
+        Path pathToFile = Paths.get(Files.createTempDirectory(null) + File.separator + "data.csv");
         String contentOfCsv = ""
                 + "name,pounds,species\n"
                 + "Marshall,40,dog\n"
                 + "Tiger,17,cat\n"
                 + "Panther,21,cat\n";
-        java.nio.file.Files.write(pathToFile, contentOfCsv.getBytes());
+        Files.write(pathToFile, contentOfCsv.getBytes());
 
         Response uploadFile = UtilIT.uploadFileViaNative(datasetId.toString(), pathToFile.toString(), authorApiToken);
         uploadFile.prettyPrint();
@@ -3357,8 +3356,8 @@ createDataset = UtilIT.createRandomDatasetViaNativeApi(dataverse1Alias, apiToken
         String datasetPid = JsonPath.from(createDataset.asString()).getString("data.persistentId");
         Integer datasetId = JsonPath.from(createDataset.asString()).getInt("data.id");
 
-        Path pathtoScript = Paths.get(java.nio.file.Files.createTempDirectory(null) + File.separator + "run.sh");
-        java.nio.file.Files.write(pathtoScript, "#!/bin/bash\necho hello".getBytes());
+        Path pathtoScript = Paths.get(Files.createTempDirectory(null) + File.separator + "run.sh");
+        Files.write(pathtoScript, "#!/bin/bash\necho hello".getBytes());
 
         JsonObjectBuilder json1 = Json.createObjectBuilder()
                 .add("description", "A script to reproduce results.")
@@ -3423,8 +3422,8 @@ createDataset = UtilIT.createRandomDatasetViaNativeApi(dataverse1Alias, apiToken
         String datasetPid = JsonPath.from(createDataset.asString()).getString("data.persistentId");
         Integer datasetId = JsonPath.from(createDataset.asString()).getInt("data.id");
 
-        Path pathtoScript = Paths.get(java.nio.file.Files.createTempDirectory(null) + File.separator + "run.sh");
-        java.nio.file.Files.write(pathtoScript, "#!/bin/bash\necho hello".getBytes());
+        Path pathtoScript = Paths.get(Files.createTempDirectory(null) + File.separator + "run.sh");
+        Files.write(pathtoScript, "#!/bin/bash\necho hello".getBytes());
 
         JsonObjectBuilder json1 = Json.createObjectBuilder()
                 .add("description", "A script to reproduce results.")
@@ -3573,13 +3572,13 @@ createDataset = UtilIT.createRandomDatasetViaNativeApi(dataverse1Alias, apiToken
         Integer datasetId = UtilIT.getDatasetIdFromResponse(createDataset);
         String datasetPid = JsonPath.from(createDataset.asString()).getString("data.persistentId");
 
-        Path pathToFile = Paths.get(java.nio.file.Files.createTempDirectory(null) + File.separator + "data.csv");
+        Path pathToFile = Paths.get(Files.createTempDirectory(null) + File.separator + "data.csv");
         String contentOfCsv = ""
                 + "name,pounds,species\n"
                 + "Marshall,40,dog\n"
                 + "Tiger,17,cat\n"
                 + "Panther,21,cat\n";
-        java.nio.file.Files.write(pathToFile, contentOfCsv.getBytes());
+        Files.write(pathToFile, contentOfCsv.getBytes());
 
         Response uploadFile = UtilIT.uploadFileViaNative(datasetId.toString(), pathToFile.toString(), authorApiToken);
         uploadFile.prettyPrint();
@@ -3643,13 +3642,13 @@ createDataset = UtilIT.createRandomDatasetViaNativeApi(dataverse1Alias, apiToken
         disallowRequestAccess.prettyPrint();
         disallowRequestAccess.then().assertThat().statusCode(OK.getStatusCode());
 
-        Path pathToFile = Paths.get(java.nio.file.Files.createTempDirectory(null) + File.separator + "data.csv");
+        Path pathToFile = Paths.get(Files.createTempDirectory(null) + File.separator + "data.csv");
         String contentOfCsv = ""
                 + "name,pounds,species\n"
                 + "Marshall,40,dog\n"
                 + "Tiger,17,cat\n"
                 + "Panther,21,cat\n";
-        java.nio.file.Files.write(pathToFile, contentOfCsv.getBytes());
+        Files.write(pathToFile, contentOfCsv.getBytes());
 
         Response uploadFile = UtilIT.uploadFileViaNative(datasetId.toString(), pathToFile.toString(), authorApiToken);
         uploadFile.prettyPrint();

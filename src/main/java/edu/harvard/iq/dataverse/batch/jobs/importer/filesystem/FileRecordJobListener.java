@@ -80,9 +80,7 @@ import jakarta.batch.operations.NoSuchJobExecutionException;
 @Named
 @Dependent
 public class FileRecordJobListener implements ItemReadListener, StepListener, JobListener {
-    
-    public static final String SEP = File.separator;
-    
+     
     private static final UserNotification.Type notifyType = UserNotification.Type.FILESYSTEMIMPORT;
     
     @Inject
@@ -316,7 +314,7 @@ public class FileRecordJobListener implements ItemReadListener, StepListener, Jo
                 jobExecutionEntity.setEndTime(date);
                 jobJson = new ObjectMapper().writeValueAsString(jobExecutionEntity);
 
-                String logDir = System.getProperty("com.sun.aas.instanceRoot") + SEP + "logs" + SEP + "batch-jobs" + SEP;
+                String logDir = System.getProperty("com.sun.aas.instanceRoot") + File.separator + "logs" + File.separator + "batch-jobs" + File.separator;
                 
                 // [1] save json log to file
                 LoggingUtil.saveJsonLog(jobJson, logDir, jobId);
@@ -439,10 +437,10 @@ public class FileRecordJobListener implements ItemReadListener, StepListener, Jo
         // Construct full path - retrieve base dir via MPCONFIG.
         // (Has sane default /tmp/dataverse from META-INF/microprofile-config.properties)
         String manifestAbsolutePath = JvmSettings.FILES_DIRECTORY.lookup()
-                + SEP + dataset.getAuthority()
-                + SEP + dataset.getIdentifier()
-                + SEP + uploadFolder
-                + SEP + manifest;
+                + File.separator + dataset.getAuthority()
+                + File.separator + dataset.getIdentifier()
+                + File.separator + uploadFolder
+                + File.separator + manifest;
         // TODO: 
         // The above goes directly to the filesystem directory configured by the 
         // old "dataverse.files.directory" JVM option (otherwise used for temp

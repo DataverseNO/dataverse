@@ -152,7 +152,7 @@ public class HarvesterServiceBean {
         hdLogger.setUseParentHandlers(false);
         hdLogger.addHandler(fileHandler);
         
-        PrintWriter importCleanupLog = new PrintWriter(new FileWriter(System.getProperty("com.sun.aas.instanceRoot") + File.separator + "logs/harvest_cleanup_" + harvestingClientConfig.getName() + "_" + logTimestamp + ".txt"));
+        PrintWriter importCleanupLog = new PrintWriter(new FileWriter(System.getProperty("com.sun.aas.instanceRoot") + File.separator + "logs" + File.separator + "harvest_cleanup_" + harvestingClientConfig.getName() + "_" + logTimestamp + ".txt"));
         
         
         List<Long> harvestedDatasetIds = new ArrayList<>();
