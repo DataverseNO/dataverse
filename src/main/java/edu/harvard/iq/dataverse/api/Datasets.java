@@ -69,7 +69,6 @@ import jakarta.ws.rs.core.Response.Status;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
@@ -1092,7 +1091,7 @@ public class Datasets extends AbstractApiBean {
                     if (dsf.getDatasetFieldType().equals(updateField.getDatasetFieldType())) {
                         found = true;
                         if (dsf.isEmpty() || dsf.getDatasetFieldType().isAllowMultiples() || replaceData) {
-                            List priorCVV = new ArrayList<>();
+                            List<> priorCVV = new ArrayList<>();
                             String cvvDisplay = "";
 
                             if (updateField.getDatasetFieldType().isControlledVocabulary()) {

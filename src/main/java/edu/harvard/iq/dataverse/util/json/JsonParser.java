@@ -363,7 +363,7 @@ public class JsonParser {
             int versionNumberInt = obj.getInt("versionNumber", -1);
             Long versionNumber = null;
             if (versionNumberInt !=-1) {
-                versionNumber = new Long(versionNumberInt);
+                versionNumber = (long) versionNumberInt;
             }
             dsv.setVersionNumber(versionNumber);
             dsv.setMinorVersionNumber(parseLong(obj.getString("minorVersionNumber", null)));

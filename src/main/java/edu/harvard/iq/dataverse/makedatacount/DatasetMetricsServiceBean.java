@@ -156,7 +156,7 @@ public class DatasetMetricsServiceBean implements java.io.Serializable {
                         List<DatasetMetrics> datasetMetricsList = new ArrayList<>();
                         String metricType = instObj.getString("metric-type");
                         String accessMethod = instObj.getString("access-method");
-                        Long totalCount = new Long(instObj.getInt("count"));
+                        Long totalCount = (long) instObj.getInt("count");
                         List<String[]> countArray = new ArrayList<>();
                         if (instObj.containsKey("country-counts")) {
                             JsonObject countryCountObj = instObj.getJsonObject("country-counts");

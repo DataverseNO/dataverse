@@ -211,7 +211,7 @@ public class ContainerManagerImpl implements ContainerManager {
                 String globalId = urlManager.getTargetIdentifier();
                 logger.fine("globalId: " + globalId);
                 if (globalId != null) {
-                    Dataset dataset = dataset = datasetService.findByGlobalId(globalId);
+                    Dataset dataset = datasetService.findByGlobalId(globalId);
                     if (dataset != null) {
                         Dataverse dvThatOwnsDataset = dataset.getOwner();
                         /**

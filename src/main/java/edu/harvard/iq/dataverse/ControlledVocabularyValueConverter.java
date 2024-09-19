@@ -5,7 +5,6 @@
  */
 package edu.harvard.iq.dataverse;
 
-import jakarta.ejb.EJB;
 import jakarta.enterprise.inject.spi.CDI;
 
 import jakarta.faces.component.UIComponent;
@@ -27,7 +26,7 @@ public class ControlledVocabularyValueConverter implements Converter {
         if (submittedValue == null || submittedValue.equals("")) {
             return "";
         } else {
-            ControlledVocabularyValue cvv = datasetFieldService.findControlledVocabularyValue(new Long(submittedValue));
+            ControlledVocabularyValue cvv = datasetFieldService.findControlledVocabularyValue(Long.parseLong(submittedValue));
             return cvv;
         }
     }

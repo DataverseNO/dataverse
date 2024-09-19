@@ -1039,8 +1039,8 @@ public class NewDTAFileReader extends TabularDataFileReader {
                                 String[] voTokens = voPair.split(",", 2);
 
                                 try {
-                                    v = new Long(voTokens[0]);
-                                    o = new Long(voTokens[1]);
+                                    v = Long.parseLong(voTokens[0]);
+                                    o = Long.parseLong(voTokens[1]);
                                 } catch (NumberFormatException nfex) {
                                     throw new IOException("Illegal v,o value: " + voPair + " for variable "
                                             + varindex + ", observation " + obsindex);
@@ -1322,7 +1322,7 @@ public class NewDTAFileReader extends TabularDataFileReader {
             String stringLengthToken = variableType.substring(3);
             Integer stringLength;
             try {
-                stringLength = new Integer(stringLengthToken);
+                stringLength = Integer.parseInt(stringLengthToken);
             } catch (NumberFormatException nfe) {
                 stringLength = null;
             }
@@ -1360,13 +1360,13 @@ public class NewDTAFileReader extends TabularDataFileReader {
         if (FormatType.matches("^%tc.*")) {
             // tc is a relatively new format
             // datum is millisecond-wise
-            milliSeconds = Math.round(new Double(rawDatum)) + STATA_BIAS_TO_EPOCH;
+            milliSeconds = Math.round(Double.parseDouble(rawDatum)) + STATA_BIAS_TO_EPOCH;
             decodedDateTime = sdf_ymdhmsS.format(new Date(milliSeconds));
             format = sdf_ymdhmsS.toPattern();
             logger.fine("tc: result=" + decodedDateTime + ", format = " + format);
 
         } else if (FormatType.matches("^%t?d.*")) {
-            milliSeconds = Math.round(new Double(rawDatum)) * MILLISECCONDS_PER_DAY + STATA_BIAS_TO_EPOCH;
+            milliSeconds = Math.round(Double.parseDouble(rawDatum)) * MILLISECCONDS_PER_DAY + STATA_BIAS_TO_EPOCH;
             logger.fine("milliSeconds=" + milliSeconds);
 
             decodedDateTime = sdf_ymd.format(new Date(milliSeconds));
@@ -1375,7 +1375,7 @@ public class NewDTAFileReader extends TabularDataFileReader {
 
         } else if (FormatType.matches("^%t?w.*")) {
 
-            long weekYears = Math.round(new Double(rawDatum));
+            long weekYears = Math.round(Double.parseDouble(rawDatum));
             long left = Math.abs(weekYears) % 52L;
             long years;
             if (weekYears < 0L) {
@@ -1433,7 +1433,7 @@ public class NewDTAFileReader extends TabularDataFileReader {
 
         } else if (FormatType.matches("^%t?q.*")) {
             // quarter
-            long quarterYears = Math.round(new Double(rawDatum));
+            long quarterYears = Math.round(Double.parseDouble(rawDatum));
             long left = Math.abs(quarterYears) % 4L;
             long years;
             if (quarterYears < 0L) {
@@ -1474,7 +1474,7 @@ public class NewDTAFileReader extends TabularDataFileReader {
             // odd number:2nd half
             // even number: 1st half
 
-            long halvesYears = Math.round(new Double(rawDatum));
+            long halvesYears = Math.round(Double.parseDouble(rawDatum));
             long left = Math.abs(halvesYears) % 2L;
             long years;
             if (halvesYears < 0L) {

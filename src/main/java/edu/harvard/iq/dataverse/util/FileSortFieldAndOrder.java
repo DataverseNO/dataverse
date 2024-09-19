@@ -28,8 +28,6 @@ public class FileSortFieldAndOrder {
         } else {
             sortOrder = SortBy.ASCENDING;
         }
-        this.sortField = sortField;
-        this.sortOrder = sortOrder;
     }
 
     public String getSortField() {

@@ -76,8 +76,12 @@ public class BatchServiceBean {
         catch(Exception e) {
                 logger.log(Level.SEVERE, "Exception in processFilePath()", e);
         } finally {
-            validationLog.close();
-            cleanupLog.close();
+            if( validationLog != null) {
+                validationLog.close();
+            }
+            if( cleanupLog != null) {
+                cleanupLog.close();
+            }
         }
         logger.info("END IMPORT");
 

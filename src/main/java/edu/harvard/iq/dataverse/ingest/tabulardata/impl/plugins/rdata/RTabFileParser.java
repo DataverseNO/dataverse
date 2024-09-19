@@ -225,7 +225,7 @@ public class RTabFileParser implements java.io.Serializable {
                         caseRow[i] = "-Inf";
                     } else {
                         try {
-                            Double testDoubleValue = new Double(valueTokens[i]);
+                            Double testDoubleValue = Double.parseDouble(valueTokens[i]);
                             caseRow[i] = testDoubleValue.toString();//valueTokens[i];
                         } catch (Exception ex) {
                             dbgLog.fine("caught exception reading numeric value; variable: " + i + ", case: " + lineCounter + "; value: " + valueTokens[i]);
@@ -274,7 +274,7 @@ public class RTabFileParser implements java.io.Serializable {
                         caseRow[i] = "";
                     } else {
                         try {
-                            Integer testIntegerValue = new Integer(valueTokens[i]);
+                            Integer testIntegerValue = Integer.parseInt(valueTokens[i]);
                             caseRow[i] = testIntegerValue.toString();
                         } catch (Exception ex) {
                             dbgLog.fine("caught exception reading numeric value; variable: " + i + ", case: " + lineCounter + "; value: " + valueTokens[i]);

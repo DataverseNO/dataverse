@@ -21,7 +21,7 @@ public class MakeDataCountProcessStateServiceBean {
         MakeDataCountProcessState mdcps = null;
         String queryStr = "SELECT d FROM MakeDataCountProcessState d WHERE d.yearMonth = '" + yearMonth + "' ";
         Query query = em.createQuery(queryStr);
-        List resultList = query.getResultList();
+        List<?> resultList = query.getResultList();
         if (resultList.size() > 1) {
             throw new EJBException("More than one MakeDataCount Process State record found for YearMonth " + yearMonth + ".");
         }

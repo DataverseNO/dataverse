@@ -191,7 +191,6 @@ public class JhoveFileType implements java.io.Serializable  {
      
     public String getFileMimeType(File file) {
         String mimeType = null;
-        boolean DEBUG = false;
         
         if (file.exists() &&  file.isFile() && (file.length() > 0L)){
             RepInfo info = checkFileType(file);

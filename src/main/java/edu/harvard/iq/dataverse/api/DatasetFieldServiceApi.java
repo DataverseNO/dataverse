@@ -259,6 +259,9 @@ public class DatasetFieldServiceApi extends AbstractApiBean {
                             throw new IOException("Encountered unknown #header type at line lineNumber " + lineNumber);
                     }
                 } else {
+                    if(header == null){
+                        throw new IOException("No #header defined in file.");
+                    }
                     switch (header) {
                         case METADATABLOCK:
                             responseArr.add( Json.createObjectBuilder()

@@ -48,8 +48,6 @@ import edu.harvard.iq.dataverse.dataaccess.StorageIO;
 import edu.harvard.iq.dataverse.dataaccess.ImageThumbConverter;
 import edu.harvard.iq.dataverse.dataaccess.S3AccessIO;
 import edu.harvard.iq.dataverse.dataaccess.TabularSubsetGenerator;
-import edu.harvard.iq.dataverse.datasetutility.FileExceedsMaxSizeException;
-import static edu.harvard.iq.dataverse.datasetutility.FileSizeChecker.bytesToHumanReadable;
 import edu.harvard.iq.dataverse.datavariable.SummaryStatistic;
 import edu.harvard.iq.dataverse.datavariable.DataVariable;
 import edu.harvard.iq.dataverse.ingest.metadataextraction.FileMetadataExtractor;
@@ -75,7 +73,6 @@ import edu.harvard.iq.dataverse.settings.JvmSettings;
 import edu.harvard.iq.dataverse.storageuse.StorageUseServiceBean;
 import edu.harvard.iq.dataverse.storageuse.UploadSessionQuotaLimit;
 import edu.harvard.iq.dataverse.util.*;
-import edu.harvard.iq.dataverse.util.file.FileExceedsStorageQuotaException;
 
 import org.apache.commons.io.IOUtils;
 //import edu.harvard.iq.dvn.unf.*;
@@ -126,7 +123,6 @@ import jakarta.jms.QueueSession;
 import jakarta.jms.Message;
 import jakarta.faces.application.FacesMessage;
 import jakarta.ws.rs.core.MediaType;
-import java.text.MessageFormat;
 import ucar.nc2.NetcdfFile;
 import ucar.nc2.NetcdfFiles;
 
@@ -1156,7 +1152,7 @@ public class IngestServiceBean {
                     // Add the size of the tab-delimited version of the data file 
                     // that we have produced and stored to the recorded storage 
                     // size of all the ancestor DvObjectContainers: 
-                    if (dataFile.getFilesize() > 0) {
+                    if (dataFile != null && dataFile.getFilesize() > 0) {
                         storageUseService.incrementStorageSizeRecursively(dataFile.getOwner().getId(), dataFile.getFilesize());
                     }
                 } else {

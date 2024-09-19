@@ -40,7 +40,7 @@ public class BannerMessageServiceBean implements java.io.Serializable {
     }
     
     public List<BannerMessage> findAllBannerMessages() {
-        return em.createQuery("select o from BannerMessage o where o.active = 'true' ")
+        return em.createQuery("select object(o) from BannerMessage o where o.active = 'true' ", BannerMessage.class)
                 .getResultList();
     }
     

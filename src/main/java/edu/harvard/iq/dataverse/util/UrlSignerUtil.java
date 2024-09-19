@@ -128,7 +128,7 @@ public class UrlSignerUtil {
             logger.fine("String to hash: " + urlToHash + "<key>");
             String newHash = DigestUtils.sha512Hex(urlToHash + key);
             logger.fine("Calculated Hash: " + newHash);
-            if (!hash.equals(newHash)) {
+            if (hash == null || !hash.equals(newHash)) {
                 logger.fine("Hash doesn't match");
                 valid = false;
             }

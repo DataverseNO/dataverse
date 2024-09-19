@@ -41,7 +41,7 @@ public class BitSet implements Serializable {
 	public static BitSet from( EnumSet<?> es ) {
 		if ( es.isEmpty() ) return emptySet();
 		BitSet retVal = new BitSet();
-		for ( Enum e : es ) {
+		for ( Enum<?> e : es ) {
 			retVal.set( e.ordinal() );
 		}
 		return retVal;
