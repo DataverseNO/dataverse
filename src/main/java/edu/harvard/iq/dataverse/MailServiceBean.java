@@ -257,7 +257,7 @@ public class MailServiceBean implements java.io.Serializable {
         fromAddress.setPersonal(
             BundleUtil.getStringFromBundle(
                 "contact.delegation",
-                Arrays.asList(personal, reply)),
+                Arrays.asList(personal, reply.replace('@', '[a]'))),
             charset
         );
     }
