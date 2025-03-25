@@ -2702,6 +2702,15 @@ public class UtilIT {
         RequestSpecification requestSpecification = given();
         return requestSpecification.get("/api/info/metrics/datasets/bySubject/toMonth/" + month + optionalQueryParams);
     }
+
+    public static Response makeDataCountMetricTimeSeries(String metricType, String queryParams) {
+        String apiPath = "/api/v1/metrics/makeDataCount/" + metricType + "/monthly";
+
+        Response response = given()
+                .get(apiPath + (queryParams != null && !queryParams.isEmpty() ? "?" + queryParams : ""));
+
+        return response;
+    }
     
     static Response clearMetricCache() {
         RequestSpecification requestSpecification = given();
@@ -3986,4 +3995,5 @@ public class UtilIT {
                 .get("/openapi");
         return response;
     }
+    
 }
