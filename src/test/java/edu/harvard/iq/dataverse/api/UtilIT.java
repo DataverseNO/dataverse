@@ -3979,6 +3979,15 @@ public class UtilIT {
                 .get("/api/dataverses/" + dataverseAlias + "/userPermissions");
     }
 
+    public static Response makeDataCountMetricTimeSeries(String metricType, String queryParams) {
+        String apiPath = "/api/v1/metrics/makeDataCount/" + metricType + "/monthly";
+
+        Response response = given()
+                .get(apiPath + (queryParams != null && !queryParams.isEmpty() ? "?" + queryParams : ""));
+
+        return response;
+    }
+
     static Response getCanDownloadAtLeastOneFile(String datasetId, String versionId, String apiToken) {
         return given()
                 .header(API_TOKEN_HTTP_HEADER, apiToken)
