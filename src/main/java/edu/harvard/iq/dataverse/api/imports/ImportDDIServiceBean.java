@@ -134,6 +134,7 @@ public class ImportDDIServiceBean {
 
         Map<String, String> filesMap = new HashMap<>();
         StringReader reader = new StringReader(xmlToParse);
+		XMLStreamReader xmlr = null;
 		XMLInputFactory xmlFactory = XmlUtil.getSecureXMLInputFactory();
         xmlFactory.setProperty("javax.xml.stream.isCoalescing", true); // allows the parsing of a CDATA segment into a single event
         xmlr = xmlFactory.createXMLStreamReader(reader);
